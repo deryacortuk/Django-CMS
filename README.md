@@ -43,6 +43,7 @@ Django offers a QuerySet method called `select_related()` that allows you to ret
 `select_related()` will help you to boost performance for retrieving related objects in one-to-many relationships. However, `select_related()` doesn't work for many-to-many or many-to-one relationships (ManyToMany or reverse ForeignKey fields). Django offers a different QuerySet method called `prefetch_related` that works for many-to-many and many-to-one relationships in addition to the relationships supported by select_related(). The `prefetch_related()` method performs a separate lookup for each relationship and joins the results using Python. This method also supports the prefetching of `GenericRelation`  and `GenericForeignKey`.
 
 ***Cache Framework***
+
 By caching queries, calculation results, or rendered content in an HTTP request, you will avoid expensive operations in the following requests. This translates into shorter response times and less processing on the server side. Django includes a robust cache system that allows you to cache data with different levels of granularity. You can cache a single query, the output of a specific view, parts of rendered template content, or your entire site. Items are stored in the cache system for a default time. You can specify the default timeout for cached data.
 
 This is how you will usually use the cache framework when your application gets an HTTP request: 

@@ -51,8 +51,11 @@ This is how you will usually use the cache framework when your application gets 
 1. Try to find the requested data in the cache
 2. If found, return the cached data 
 3.  If not found, perform the following steps: 
+
          ° Perform the query or processing required to obtain the data
+         
          ° Save the generated data in the cache 
+         
          ° Return the data
 
  Django comes with several cache backends.  These are the following:

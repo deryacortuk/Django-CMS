@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>{% block title %}CMS{% endblock %}</title>
+ <link href="{% static "css/django.css" %}" rel="stylesheet">
+</head>
+<body>
+ <div id="header">
+ <a href="/">CMS</a>
+ <ul class="menu">
+ {% if request.user.is_authenticated %}
+ <li><a href="{% url "logout" %}">Sign out</a></li>
+ {% else %}
+ <li><a href="{% url "login" %}">Sign in</a></li>
+ {% endif %}
+ </ul>
+ </div>
+ <div id="content">
+ {% block content %}
+ {% endblock %}
+ 
+ {% load embed_video_tags %}
+  {% video item.url "small" %}
+  {% cache 600 module_contents module %}
+ {% for content in module.contents.all %}
+ {% with item=content.item %}
+ <h2>{{ item.title }}</h2>
+ {{ item.render }}
+ {% endwith %}
+ {% endfor %}
+{% endcache %}
+ </div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/
+jquery.min.js">
+ </script>
+ <script>
+ $(document).ready(function() {
+ {% block domready %}
+ {% endblock %}
+ });
+</script>
+</body>
+</html>
